@@ -1,0 +1,20 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# yt-dlp standalone binary (re-downloaded via setup, ~35MB)
+bin/
+
+# exported browser cookies (private!)
+cookies.txt
+
+# leftover experiments / scratch
+test.mp4
+test-*.ts
+check_instances.mjs
+find_cobalt.js

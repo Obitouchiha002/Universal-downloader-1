@@ -1,0 +1,16 @@
+{
+  "name": "StreamGarden — Video Downloader",
+  "short_name": "StreamGarden",
+  "description": "Download video, audio (MP3/M4A) and thumbnails from YouTube, Instagram, TikTok, X & 1700+ sites.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F9F8F4",
+  "theme_color": "#5A5A40",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

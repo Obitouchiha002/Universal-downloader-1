@@ -1,0 +1,13 @@
+node_modules
+dist
+bin
+.git
+.env
+.env.*
+!.env.example
+*.log
+test.mp4
+test-*.ts
+check_instances.mjs
+find_cobalt.js
+cookies.txt

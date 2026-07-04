@@ -1,0 +1,6 @@
+{
+  "name": "Universal Video Downloader",
+  "description": "A clean, simple website to download direct videos from public accounts on platforms like YouTube, Instagram, and Facebook, with multi-format support and progress bars.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
