@@ -383,8 +383,16 @@ function withTimeout<T>(p: Promise<T>, ms: number, fallback: T): Promise<T> {
 async function searchYouTube(query: string, n = 5): Promise<any[]> {
   try {
     const r = await fetch(
-      `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&hl=en`,
-      { headers: { 'User-Agent': UA, 'Accept-Language': 'en-US,en' } }
+      `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}&hl=en&gl=US`,
+      {
+        headers: {
+          'User-Agent': UA,
+          'Accept-Language': 'en-US,en',
+          // Consent cookie — bypasses the cookie-consent interstitial that YouTube
+          // otherwise serves to datacenter IPs (which has no ytInitialData results).
+          Cookie: 'CONSENT=YES+cb; SOCS=CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjQwMTA5LjA1X3AwGgJlbiADGgYIgLC_rQY',
+        },
+      }
     );
     const html = await r.text();
     const m = html.match(/ytInitialData\s*=\s*({.+?});\s*<\/script>/s);
@@ -673,7 +681,9 @@ async function startServer() {
   app.use(express.json());
 
   // Expose whether AI is configured so the UI can show the right badge.
-  app.get('/api/config', (_req, res) => res.json({ ai: AI_ENABLED, cookies: COOKIES_ON }));
+  app.get('/api/config', (_req, res) =>
+    res.json({ ai: AI_ENABLED, cookies: COOKIES_ON, version: 'v3-scrape-consent' })
+  );
 
   // ---- Preview stream: proxy a playable progressive stream (all platforms) ----
   // Used by an HTML5 <video> so preview works everywhere, not just YouTube embeds.
