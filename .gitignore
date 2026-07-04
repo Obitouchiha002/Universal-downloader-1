@@ -18,3 +18,4 @@ test.mp4
 test-*.ts
 check_instances.mjs
 find_cobalt.js
+ngrok-domain.txt

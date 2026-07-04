@@ -45,7 +45,22 @@ so no secrets or big binaries get pushed.
 If you own a domain: Render → your service → **Settings → Custom Domains** →
 add `downloader.yourname.com`, then add the shown CNAME record at your DNS provider.
 
-## 4. (Recommended) Make YouTube reliable with cookies
+## 4a. Make YouTube work on the cloud — Cobalt (easiest, no cookies)
+
+On a datacenter IP yt-dlp can't fetch YouTube. The app can instead ask a public
+**Cobalt** instance to do the extraction (like SaveFrom does on its own backend).
+
+- In Render env vars set: `FORCE_COBALT` = `1`
+  (YouTube then goes straight to Cobalt; other sites still use yt-dlp.)
+- Optional: `COBALT_INSTANCES` = comma-separated instance URLs to prefer.
+
+That's it — YouTube video + MP3 will download on the cloud with no cookies.
+
+> Trade-off: public Cobalt instances are volunteer-run and can rate-limit or go
+> down. The app tries several in order, but it's a moving target — not a 100%
+> guarantee. Combine with cookies (below) for the best odds.
+
+## 4b. (Optional) Make YouTube reliable with cookies
 
 1. In your browser (logged into YouTube), install a "Get cookies.txt" extension and
    export cookies for `youtube.com` → save as `cookies.txt`.
